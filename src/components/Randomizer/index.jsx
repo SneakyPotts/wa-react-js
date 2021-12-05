@@ -22,21 +22,19 @@ const Randomizer = () => {
                 className={style.result}
                 value={randomValue}
                 type="text"
-                placeholder='Random number:'/>
+                placeholder={'Random number result'}/>
 
             <input
                 className={style.minimum}
-                value={minValue}
                 onChange={event => setMin(event.target.value)}
                 type="text"
-                id="min" />
+                placeholder={'Minimum: ' + minValue} />
 
             <input
                 className={style.maximum}
-                value={maxValue}
                 onChange={event => setMax(event.target.value)}
                 type="text"
-                id="max" />
+                placeholder={'Maximum: ' + maxValue} />
 
             <button className={style.random} onClick={() => randomize(minValue, maxValue)}>Get random number</button>
         </div>
