@@ -1,25 +1,22 @@
-import logo from './logo.svg';
+import React from "react";
+import {useState} from "react";
 import './App.css';
+import Counter from "./components/Counter";
+import Randomizer from "./components/Randomizer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [text, setText] = useState('start point');
+
+    return (
+        <React.Fragment>
+            {/*<Counter/>*/}
+
+            {/*<h2>{text}</h2>*/}
+            {/*<input type="text" value={text} onChange={event => setText(event.target.value)}/>*/}
+
+            <Randomizer />
+        </React.Fragment>
+    );
 }
 
 export default App;
