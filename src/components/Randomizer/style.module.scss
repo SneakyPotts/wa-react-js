@@ -28,6 +28,10 @@
     border: none;
     cursor: pointer;
   }
+  .random:active {
+    background-color: #005066;
+    border: 1px solid #006882;
+  }
 
   .result,
   .minimum,
