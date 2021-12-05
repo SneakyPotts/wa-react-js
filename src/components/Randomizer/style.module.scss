@@ -1,0 +1,41 @@
+.main {
+  width: 500px;
+  height: auto;
+  background-color: #004558;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  grid-template:
+          [start] "result result" 100px [row2]
+          [row2] "minimum maximum" 100px [row3]
+          [row3] "button button" 100px [row-end]
+          / minmax(30%, 1fr) minmax(30%, 1fr);
+
+  .result {
+    grid-area: result;
+  }
+  .minimum {
+    grid-area: minimum;
+  }
+  .maximum {
+    grid-area: maximum;
+  }
+  .random {
+    grid-area: button;
+    background-color: #00607a;
+    border: none;
+    cursor: pointer;
+  }
+
+  .result,
+  .minimum,
+  .maximum,
+  .random {
+    margin: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+  }
+}
