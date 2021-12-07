@@ -8,10 +8,10 @@
   transform: translate(-50%, -50%);
   display: grid;
   grid-template:
-          [start] "result result" 100px [row2]
-          [row2] "minimum maximum" 100px [row3]
-          [row3] "button button" 100px [row-end]
-          / minmax(30%, 1fr) minmax(30%, 1fr);
+    [start] "result result" 100px [row2]
+    [row2] "minimum maximum" 100px [row3]
+    [row3] "button button" 100px [row-end]
+    / minmax(30%, 1fr) minmax(30%, 1fr);
 
   .result {
     grid-area: result;
