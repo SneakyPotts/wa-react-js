@@ -1,9 +1,10 @@
 import React from 'react'
+import style from './styles.scss'
 
-const Button = (props) => {
+const Button = ({children, ...props}) => {
     return (
-        <button {...props}>
-            
+        <button className='btn' {...props}>
+            { children }
         </button>
     )
 }

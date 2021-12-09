@@ -1,7 +1,8 @@
 import React from "react";
 import './style.scss'
+import Button from "../UI/Button";
 
-const ListItem = ({num, title, text}) => {
+const ListItem = ({id, num, title, text, removeHandl}) => {
 
     return (
         <li className="list-item">
@@ -9,6 +10,7 @@ const ListItem = ({num, title, text}) => {
             <span>{num}. {title}</span>
             <span>{text}</span>
           </span>
+            <Button onClick={() => removeHandl(id)}>Remove</Button>
         </li>
 
     )

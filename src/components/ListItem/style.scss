@@ -1,13 +1,16 @@
 .list-item {
-    padding: 20px;
-    border: 1px solid tomato;
-    margin-bottom: 20px;
-    border-radius: 10px;
-    list-style: none;
-    
-  }
-  .list-item-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
+  padding: 20px;
+  border: 1px solid tomato;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.list-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

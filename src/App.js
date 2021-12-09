@@ -1,47 +1,55 @@
-import React, { useState, useRef } from "react";
+import React, {useState} from "react";
 import './App.scss';
 import List from "./components/List";
-import Button from "./components/UI/Button";
+import Form from "./components/Form";
 
 function App() {
-  const [data, setData] = useState([])
+    const [data, setData] = useState([])
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const [selected, setSelected] = useState('');
 
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+    const handlSubmit = ev => {
+        ev.preventDefault();
 
-  const handlSubmit = ev => {
-    ev.preventDefault();
+        const obj = {title, description}
+        setData(...data, obj);
+        setTitle('');
+        setDescription('');
+    }
 
-    const obj = { title, description }
-    setData(...data, obj)
-    setTitle('');
-    setDescription('');
-  }
+    const removeHandl = (id) => {
+        setData(data.filter(i => i.id !== id))
+    }
 
-  return (
-    <React.Fragment>
+    const selectData = (ev) => {
+      setSelected(ev.target.value);
+      setData([...data.sort((a,b) => a[selected].localeCompare(b[selected]))]);
+    }
 
-      <form onSabmit={handlSubmit}>
-        <input
-          type="text"
-          name="title"
-          placeholder="enter title"
-          value={title}
-          onChange={ev => setTitle(ev.target.value)}
-        />
-        <input
-          type="text"
-          name="text" p
-          placeholder="enter description"
-          value={description}
-          onChange={ev => setDescription(ev.target.value)}
-        />
-        <Button type="button" disabled />
-      </form>
+    return (
+        <React.Fragment>
 
-      <List data={data} />
-    </React.Fragment>
-  );
+            <Form
+                handlSubmit={handlSubmit}
+                title={title}
+                setTitle={setTitle}
+                description={description}
+                setDescription={setDescription}
+            />
+            <hr/>
+
+          <select value={selected} onChange={selectData}>
+            <option value={title}>По названию</option>
+            <option value={description}>По описанию</option>
+          </select>
+
+            {data?.length
+                ? <List data={data} removeHandl={removeHandl}/>
+                : <h1>Список пустой</h1>
+            }
+        </React.Fragment>
+    );
 }
 
 export default App;
