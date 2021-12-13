@@ -1,0 +1,13 @@
+.list-item {
+  padding: 20px;
+  border: 1px solid tomato;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  width: 50vw;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
