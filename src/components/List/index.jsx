@@ -1,16 +1,29 @@
 import React from 'react';
 import './style.scss';
 import ListItem from "../ListItem";
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
-const List = ({pageTitle, data}) => {
+const List = ({data, removeHandle}) => {
     return (
         <React.Fragment>
-            <h2>{pageTitle}</h2>
             <ul>
-                {data.map((el, i) => (
-                    <ListItem num={i +1} title={el.title} text={el.text} key={el.id} />
-                ))}
-
+                <TransitionGroup className="todo-list">
+                    {data.map((el, i) => (
+                        <CSSTransition
+                            key={el.id}
+                            timeout={500}
+                            classNames="item"
+                        >
+                            <ListItem
+                                id={el.id}
+                                num={i + 1}
+                                title={el.title}
+                                text={el.text}
+                                removeHandle={removeHandle}
+                            />
+                        </CSSTransition>
+                    ))}
+                </TransitionGroup>
             </ul>
         </React.Fragment>
     );
