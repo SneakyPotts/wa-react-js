@@ -4,6 +4,7 @@ import ListItem from "../ListItem";
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 const List = ({data, removeHandle}) => {
+
     return (
         <React.Fragment>
             <ul>
@@ -18,7 +19,7 @@ const List = ({data, removeHandle}) => {
                                 id={el.id}
                                 num={i + 1}
                                 title={el.title}
-                                text={el.text}
+                                body={el.body}
                                 removeHandle={removeHandle}
                             />
                         </CSSTransition>
