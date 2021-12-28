@@ -20,15 +20,19 @@ function App() {
     const [isActive, setIsActive] = useState(false);
     const [limit, setLimit] = useState(10);
     const [page, setPage] = useState(1);
-    const [totalCount, setTotalCount] = useState(0);
-    const [pageCount, setPageCount] = useState(0);
+    // const [totalCount, setTotalCount] = useState(0);
+    // const [pageCount, setPageCount] = useState(0);
+    const [pages, setPages] = useState([]);
 
     const [fetching, isLoading, error] = useFetch(async () => {
         const response = await PostService.getPosts(limit, page);
         const posts = await response.json();
+        const totalCount = response.headers.get('x-total-count');
+        const pageCount = getPageCount(totalCount, limit);
+        // setTotalCount(response.headers.get('x-total-count'));
+        // setPageCount(getPageCount(totalCount, limit));
+        setPages(getPageArray(pageCount));
 
-        setTotalCount(response.headers.get('x-total-count'));
-        setPageCount(getPageCount(totalCount, limit));
         setData(posts);
     });
 
@@ -74,8 +78,6 @@ function App() {
         fetching();
     }, [page]);
 
-    const pages = getPageArray(pageCount);
-
     return (
         <React.Fragment>
             <Button onClick={activeModal(true)}>Add posts</Button>
@@ -120,7 +122,7 @@ function App() {
                     <li
                         key={el}
                         className={classNames('pagination-item', {active: page === el})}
-                        onClick={() => setPage()}
+                        onClick={() => setPage(el)}
                     >{el}</li>
                 )}
             </ul>
