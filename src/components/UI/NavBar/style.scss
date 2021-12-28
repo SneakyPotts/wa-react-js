@@ -1,0 +1,15 @@
+.navbar {
+  padding: 15px;
+  background-color: #eee;
+  margin-bottom: 10px;
+
+  nav {
+    display: flex;
+    gap: 20px;
+
+    a.active {
+      color: tomato;
+      font-weight: bold;
+    }
+  }
+}
