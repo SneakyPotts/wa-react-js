@@ -4,4 +4,7 @@ export class PostService {
     static getPosts(limit, page) {
         return fetch(`${API_URL}posts?_limit=${limit}&_page=${page}`);
     }
+    static getPostById(id) {
+        return fetch(`${API_URL}posts/${id}`);
+    }
 }

@@ -1,21 +1,30 @@
-import React from "react";
+import React, {useState} from "react";
 import './App.scss';
-import Posts from "./pages/Posts";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import About from "./pages/About";
 import Layout from "./components/Layout/inde";
-import Post from "./pages/Post";
+import LogIn from "./pages/LogIn";
+import { routes } from "./routes";
+import RequireAuth from "./HOC/RequireAuth";
 
 function App() {
-    return (
+  const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
+
+  return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Layout/>}>
-                    <Route index element={<Posts/>}/>
-                    <Route path='/about' element={<About/>}/>
-                    <Route path='/post/:id' element={<Post/>}/>
+                <Route path='/' element={<Layout setIsAuth={setIsAuth}/>}>
+                  {routes.map(i =>
+                    <Route path={i.path} element={
+                      i.isPrivate
+                      ? <RequireAuth isAuth={isAuth}>
+                          {i.element}
+                        </RequireAuth>
+                      : i.element
+                    } />
+                  )}
                 </Route>
-              <Route path='*' element={<Navigate to={'/'} />} />
+              <Route path='/login' element={<LogIn setIsAuth={setIsAuth} />} />
+              <Route path='*' element={<Navigate to={isAuth ? '/' : '/login'} replace />} />
             </Routes>
         </BrowserRouter>
     );
