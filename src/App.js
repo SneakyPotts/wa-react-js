@@ -5,14 +5,16 @@ import Layout from "./components/Layout/inde";
 import LogIn from "./pages/LogIn";
 import { routes } from "./routes";
 import RequireAuth from "./HOC/RequireAuth";
+import {AuthContext} from "./context";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
 
   return (
+    <AuthContext.Provider value={{isAuth, setIsAuth}} >
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<Layout setIsAuth={setIsAuth}/>}>
+                <Route path='/' element={<Layout />}>
                   {routes.map(i =>
                     <Route path={i.path} element={
                       i.isPrivate
@@ -23,10 +25,11 @@ function App() {
                     } />
                   )}
                 </Route>
-              <Route path='/login' element={<LogIn setIsAuth={setIsAuth} />} />
+              <Route path='/login' element={<LogIn />} />
               <Route path='*' element={<Navigate to={isAuth ? '/' : '/login'} replace />} />
             </Routes>
         </BrowserRouter>
+    </AuthContext.Provider>
     );
 }
 

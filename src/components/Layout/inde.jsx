@@ -1,12 +1,12 @@
 import React from 'react';
 import NavBar from "../UI/NavBar";
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
-const Layout = ({setIsAuth}) => {
+const Layout = () => {
   return (
     <>
-      <NavBar setIsAuth={setIsAuth}/>
-      <Outlet/>
+      <NavBar />
+      <Outlet />
     </>
   );
 };

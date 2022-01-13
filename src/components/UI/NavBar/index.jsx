@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './style.scss';
 import {Link, NavLink, useNavigate} from "react-router-dom";
+import {AuthContext} from "../../../context";
 
-const NavBar = ({setIsAuth}) => {
+const NavBar = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     setIsAuth(false);
@@ -10,7 +11,8 @@ const NavBar = ({setIsAuth}) => {
     localStorage.removeItem('isAuth');
   }
 
-    return (
+  const { setIsAuth } = useContext(AuthContext);
+  return (
         <div className='navbar'>
             <nav>
                 <NavLink to="/">Home</NavLink>
