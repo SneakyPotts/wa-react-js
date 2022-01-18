@@ -2,16 +2,20 @@ import React, {useContext} from 'react';
 import './style.scss';
 import {useNavigate} from "react-router-dom";
 import {AuthContext} from "../../context";
+import {useDispatch, useSelector} from "react-redux";
+import {setAuthRedux} from "../../store/actions/auth";
 
 
 const LogIn = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleClick = () => {
-    setIsAuth(true);
+    dispatch(setAuthRedux(true));
     navigate('/');
     localStorage.setItem('isAuth', true);
   }
-  const { setIsAuth } = useContext(AuthContext);
+  // const { setIsAuth } = useContext(AuthContext);
 
   return (
     <div className='signin'>

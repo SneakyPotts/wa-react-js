@@ -1,1 +1,5 @@
 export const CHANGE_TEST = 'CHANGE_TEST';
+export const CHANGE_COUNT_INC = 'CHANGE_COUNT_INC';
+export const CHANGE_COUNT_DECR = 'CHANGE_COUNT_DECR';
+export const CHANGE_COUNT_VALUE = 'CHANGE_COUNT_VALUE';
+export const SET_AUTH = 'SET_AUTH';

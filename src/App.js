@@ -6,19 +6,21 @@ import LogIn from "./pages/LogIn";
 import { routes } from "./routes";
 import RequireAuth from "./HOC/RequireAuth";
 import {AuthContext} from "./context";
+import {useSelector} from "react-redux";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem('isAuth'));
+  const {auth} = useSelector(state => state.test)
 
   return (
-    <AuthContext.Provider value={{isAuth, setIsAuth}} >
+    <AuthContext.Provider value='' >
         <BrowserRouter>
             <Routes>
                 <Route path='/' element={<Layout />}>
                   {routes.map(i =>
                     <Route path={i.path} element={
                       i.isPrivate
-                      ? <RequireAuth isAuth={isAuth}>
+                      ? <RequireAuth isAuth={auth}>
                           {i.element}
                         </RequireAuth>
                       : i.element
@@ -26,7 +28,7 @@ function App() {
                   )}
                 </Route>
               <Route path='/login' element={<LogIn />} />
-              <Route path='*' element={<Navigate to={isAuth ? '/' : '/login'} replace />} />
+              <Route path='*' element={<Navigate to={auth ? '/' : '/login'} replace />} />
             </Routes>
         </BrowserRouter>
     </AuthContext.Provider>
