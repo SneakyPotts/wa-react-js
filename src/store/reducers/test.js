@@ -1,9 +1,20 @@
-import {CHANGE_COUNT_DECR, CHANGE_COUNT_INC, CHANGE_COUNT_VALUE, CHANGE_TEST, SET_AUTH} from "../types";
+import {
+  CHANGE_COUNT_DECR,
+  CHANGE_COUNT_INC,
+  CHANGE_COUNT_VALUE,
+  CHANGE_TEST,
+  GET_USERS, GET_USERS_ERROR,
+  GET_USERS_LOADING,
+  SET_AUTH
+} from "../types";
 
 const initialState = {
   test: null,
   count: 0,
   auth: false,
+  users: [],
+  isLoading: false,
+  error: '',
 }
 
 export const testReducer = (state = initialState, {type, payload}) => {
@@ -32,6 +43,21 @@ export const testReducer = (state = initialState, {type, payload}) => {
       return {
         ...state,
         auth: payload,
+      }
+    case GET_USERS:
+      return {
+        ...state,
+        users: payload,
+      }
+    case GET_USERS_LOADING:
+      return {
+        ...state,
+        isLoading: payload,
+      }
+    case GET_USERS_ERROR:
+      return {
+        ...state,
+        error: payload,
       }
     default:
       return state;

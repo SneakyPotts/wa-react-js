@@ -1,7 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {useFetch} from "../../hooks/useFetch";
 import {PostService} from "../../API/PostService";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchComments} from "../../fetches";
 
 const Post = () => {
   const {id} = useParams();
@@ -18,10 +20,22 @@ const Post = () => {
   }, []);
 
 
+  const dispatch = useDispatch();
+  const {comments} = useSelector(state => state.comments);
+
+  const filteredComments = useMemo(() => {
+    return  comments.filter((el, index) => el.postId == id);
+  }, [comments]);
+  console.log(filteredComments)
+
   return (
-    <div>
+    <>
       <h1>{title}</h1>
-    </div>
+      <button onClick={() => dispatch(fetchComments())}>fetch comments</button>
+      { filteredComments.map(comment => (
+        <p>{comment.body}</p>
+      ))}
+    </>
   );
 };
 

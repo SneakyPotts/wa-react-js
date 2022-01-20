@@ -7,4 +7,10 @@ export class PostService {
     static getPostById(id) {
         return fetch(`${API_URL}posts/${id}`);
     }
+    static getUsers() {
+        return fetch(`${API_URL}users`);
+    }
+    static getComments() {
+        return fetch(`${API_URL}comments`);
+    }
 }
